@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class Role
+class Roles
 {
     /**
      * Handle an incoming request.
