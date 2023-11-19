@@ -35,3 +35,8 @@ Route::post('login', [AuthController::class, 'authenticate'])->middleware('guest
 // Logout
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout.get');
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout.post');
+
+// Mengarahkan ke halaman sebelumnya jika halaman tidak ditemukan
+Route::fallback(function () {
+    return redirect()->back();
+});

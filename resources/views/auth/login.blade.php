@@ -8,23 +8,23 @@
                     class="col-lg-5 col-xl-5 p-12 p-xl-20 position-fixed start-0 top-0 h-screen overflow-y-hidden d-none d-lg-flex flex-column">
                 </div>
                 <div
-                    class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative">
+                    class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative bg-gray-25">
                     <div class="py-lg-16 px-lg-20 mx-lg-20 mx-5">
-                        <div class="row">
-                            <div class="text-center text-md-start">
-                                @if ($errors->any())
-                                    <div class="alert alert-danger alert-dismissible fade show mb-10" role="alert">
-                                        <div class="d-flex align-items-center justify-content-start">
-                                            <i class="icon fa-solid fa-exclamation-triangle text-white fs-5"></i>
-                                            <div class="flex-fill ms-3">
-                                                {{ $errors->first() }}
-                                            </div>
-                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
+                        @if ($errors->any())
+                            <div class="row alert alert-danger alert-dismissible fade show mb-5" role="alert">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <i class="icon fa-solid fa-exclamation-triangle text-white fs-5"></i>
+                                    <div class="flex-fill ms-3">
+                                        {{ $errors->first() }}
                                     </div>
-                                @endif
-                                <img src="{{ url('img/logo-akpol.png') }}" class="img-fluid mb-3 ml-md-4 ml-sm-5"
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="row rounded-3 border shadow-lg bg-white p-lg-3">
+                            <div class="text-center text-md-start">
+                                <img src="{{ url('img/logo-akpol.png') }}" class="img-fluid mt-3 mb-3 ml-md-4 ml-sm-5"
                                     width="90px" alt="Logo">
                                 <p class="mb-0">Selamat Datang</p>
                                 <h4 style="font-weight: bolder;">di SIP AKPOL</h4>
