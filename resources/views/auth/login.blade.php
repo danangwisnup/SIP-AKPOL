@@ -1,15 +1,17 @@
 @extends('layouts.main')
 @section('content')
     <main>
-        <div class="px-5 py-5 p-lg-0 min-h-screen bg-surface-secondary d-flex flex-column justify-content-center">
-            <div class="d-flex justify-content-center">
-                <!-- kecilkan background image -->
-                <div style="background-image: url('{{ url('img/bg-login.png') }}'); background-size: cover; background-position: center;"
-                    class="col-lg-5 col-xl-5 p-12 p-xl-20 position-fixed start-0 top-0 h-screen overflow-y-hidden d-none d-lg-flex flex-column">
+        <div class="px-5 py-5 p-lg-0 h-screen">
+            <div class="d-flex justify-content-center col-md-12">
+                <div
+                    class="col-lg-5 col-xl-5 p-12 mx-20 position-fixed start-0 top-0 h-screen overflow-y-hidden d-none d-lg-flex flex-column">
+                    <div style="background-image: url('{{ url('img/bg-login.png') }}'); background-size: cover; background-position: center;"
+                        class="d-lg-flex flex-column w-full h-full p-16 bg-surface-secondary rounded-5">
+                    </div>
                 </div>
                 <div
-                    class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-screen d-flex flex-column justify-content-center position-relative bg-gray-25">
-                    <div class="py-lg-16 px-lg-20 mx-lg-20 mx-5">
+                    class="col-12 col-md-9 col-lg-7 offset-lg-5 min-h-screen d-flex flex-column justify-content-center position-relative">
+                    <div class="py-lg-16 px-lg-20 mx-lg-20 mx-1">
                         @if ($errors->any())
                             <div class="row alert alert-danger alert-dismissible fade show mb-5" role="alert">
                                 <div class="d-flex align-items-center justify-content-start">
@@ -22,7 +24,7 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="row rounded-3 border shadow-lg bg-white p-lg-3">
+                        <div class="row rounded-3 border bg-white shadow-lg p-lg-3">
                             <div class="text-center text-md-start">
                                 <img src="{{ url('img/logo-akpol.png') }}" class="img-fluid mt-3 mb-3 ml-md-4 ml-sm-5"
                                     width="90px" alt="Logo">
