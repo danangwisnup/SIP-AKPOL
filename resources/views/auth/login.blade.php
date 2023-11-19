@@ -2,38 +2,49 @@
 @section('content')
     <main>
         <div class="px-5 py-5 p-lg-0 h-screen">
+            <!-- make blur image background -->
             <div class="d-flex justify-content-center col-md-12">
-                <div
-                    class="col-lg-5 col-xl-5 p-12 mx-20 position-fixed start-0 top-0 h-screen overflow-y-hidden d-none d-lg-flex flex-column">
-                    <div style="background-image: url('{{ url('img/bg-login.png') }}'); background-size: cover; background-position: center;"
-                        class="d-lg-flex flex-column w-full h-full p-16 bg-surface-secondary rounded-5">
-                    </div>
+                <div class="position-absolute bg-image h-100"
+                    style="background-image: url('{{ url('img/gerbang-akpol.jpg') }}');
+    opacity: 0.3;
+    position: fixed;
+    background-size: cover;
+    left: 0;
+    background-position: center;
+    right: 0;
+    display: block;
+    width: auto;
+    height: 100%;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);">
                 </div>
                 <div
-                    class="col-12 col-md-9 col-lg-7 offset-lg-5 min-h-screen d-flex flex-column justify-content-center position-relative">
-                    <div class="py-lg-16 px-lg-20 mx-lg-20 mx-1">
+                    class="col-12 col-md-9 col-lg-7 min-h-screen d-flex flex-column justify-content-center position-relative">
+                    <div class="row py-lg-16 px-lg-20 mx-lg-20 mx-1">
                         @if ($errors->any())
-                            <div class="row alert alert-danger alert-dismissible fade show mb-5" role="alert">
-                                <div class="d-flex align-items-center justify-content-start">
-                                    <i class="icon fa-solid fa-exclamation-triangle text-white fs-5"></i>
-                                    <div class="flex-fill ms-3">
-                                        {{ $errors->first() }}
-                                    </div>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
+                            <div class="alert alert-danger alert-left-icon alert-dismissible" role="alert">
+                                <div class="icon">
+                                    <i class="bi bi-x-circle"></i>
                                 </div>
+                                {{ $errors->first() }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                         @endif
-                        <div class="row rounded-3 border bg-white shadow-lg p-lg-3">
+
+                        <div class="rounded-3 border bg-white shadow p-lg-10 p-3">
                             <div class="text-center text-md-start">
-                                <img src="{{ url('img/logo-akpol.png') }}" class="img-fluid mt-3 mb-3 ml-md-4 ml-sm-5"
+                                <img src="{{ url('img/logo-akpol.png') }}" class="img-fluid mb-3 ml-md-4 ml-sm-5"
                                     width="90px" alt="Logo">
                                 <p class="mb-0">Selamat Datang</p>
                                 <h4 style="font-weight: bolder;">di SIP AKPOL</h4>
                                 <p style="font-size: small; color: grey;">merupakan aplikasi untuk memberikan penilaian
                                     karakter dan memonitoring Taruna Akademik Kepolisian Negara Republik Indonesia.</p>
                             </div>
-                            <form class="mt-5 mb-3 mt-md-3" action="{{ route('login.post') }}" method="POST">
+                            <form class="mt-5" action="{{ route('login.post') }}" method="POST">
                                 @csrf
                                 <!-- Identifier -->
                                 <div class="mb-3">
