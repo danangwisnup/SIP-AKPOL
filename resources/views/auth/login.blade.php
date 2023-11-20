@@ -5,21 +5,7 @@
             <!-- make blur image background -->
             <div class="d-flex justify-content-center col-md-12">
                 <div class="position-absolute bg-image h-100"
-                    style="background-image: url('{{ url('img/gerbang-akpol.jpg') }}');
-    opacity: 0.3;
-    position: fixed;
-    background-size: cover;
-    left: 0;
-    background-position: center;
-    right: 0;
-    display: block;
-    width: auto;
-    height: 100%;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);">
+                    style="background-image: url('{{ url('img/gerbang-akpol.jpg') }}'); opacity: 0.3; position: fixed; background-size: cover; left: 0; background-position: center; right: 0; display: block; width: auto; height: 100%; -webkit-filter: blur(5px); -moz-filter: blur(5px); -o-filter: blur(5px); -ms-filter: blur(5px); filter: blur(5px);">
                 </div>
                 <div
                     class="col-12 col-md-9 col-lg-7 min-h-screen d-flex flex-column justify-content-center position-relative">
