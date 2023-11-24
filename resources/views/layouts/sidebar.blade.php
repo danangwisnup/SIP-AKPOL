@@ -68,26 +68,57 @@
                         aria-expanded="false" aria-controls="sidebar-konfigurasi">
                         <i class="fe fe-settings"></i> Konfigurasi
                     </a>
-                    <div class="collapse" id="sidebar-konfigurasi">
+                    <div class="collapse {{ Request::is('konfigurasi/*') ? 'show' : '' }}" id="sidebar-konfigurasi">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ url('konfigurasi/semester') }}" class="nav-link">Data Semester</a>
+                                <a href="{{ url('konfigurasi/semester') }}"
+                                    class="nav-link {{ Request::is('konfigurasi/semester') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Semester & Tahun</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('konfigurasi/pendidik') }}" class="nav-link">Data Pendidik</a>
+                                <a href="{{ url('konfigurasi/pendidik') }}"
+                                    class="nav-link {{ Request::is('konfigurasi/pendidik') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Data Pendidik</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('konfigurasi/taruna') }}" class="nav-link">Data Taruna/Taruni</a>
+                                <a href="{{ url('konfigurasi/taruna') }}"
+                                    class="nav-link {{ Request::is('konfigurasi/taruna') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Data Taruna/Taruni</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('konfigurasi/kelas') }}" class="nav-link">Data Kelas</a>
+                                <a href="{{ url('konfigurasi/kelas') }}"
+                                    class="nav-link {{ Request::is('konfigurasi/kelas') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Data Kelas</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('konfigurasi/peleton') }}" class="nav-link">Data Peleton</a>
+                                <a href="{{ url('konfigurasi/peleton') }}"
+                                    class="nav-link {{ Request::is('konfigurasi/peleton') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Data Peleton</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#sidebar-aspek-karakter" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebar-aspek-karakter">
+                        <i class="fe fe-bar-chart-2"></i> Aspek Karakter
+                    </a>
+                    <div class="collapse {{ Request::is('aspek-karakter/*') ? 'show' : '' }}"
+                        id="sidebar-aspek-karakter">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ url('aspek-karakter/positif') }}"
+                                    class="nav-link {{ Request::is('aspek-karakter/positif') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Positif
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('konfigurasi/aspek-karakter') }}" class="nav-link">Data Aspek
-                                    Karakter</a>
+                                <a href="{{ url('aspek-karakter/negatif') }}"
+                                    class="nav-link {{ Request::is('aspek-karakter/negatif') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Negatif
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -106,14 +137,18 @@
                         <i class="fe fe-eye"></i>
                         Monitoring dan Analisis
                     </a>
-                    <div class="collapse" id="sidebar-mona">
+                    <div class="collapse {{ Request::is('mona/*') ? 'show' : '' }}" id="sidebar-mona">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ url('mona/riwayat-penilaian') }}" class="nav-link">Riwayat Penilaian</a>
+                                <a href="{{ url('mona/riwayat-penilaian') }}"
+                                    class="nav-link {{ Request::is('mona/riwayat-penilaian') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Riwayat Penilaian</a>
                         </ul>
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ url('mona/grafik-nilai') }}" class="nav-link">Grafik Nilai</a>
+                                <a href="{{ url('mona/grafik-nilai') }}"
+                                    class="nav-link {{ Request::is('mona/grafik-nilai') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Grafik Nilai</a>
                             </li>
                         </ul>
                     </div>
@@ -132,16 +167,18 @@
                         <i class="fe fe-list"></i>
                         Input Data
                     </a>
-                    <div class="collapse" id="sidebar-input-data">
+                    <div class="collapse {{ Request::is('input-data/*') ? 'show' : '' }}" id="sidebar-input-data">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ url('input-data/nilai-perilaku-positif') }}" class="nav-link">Nilai
-                                    Perilaku Positif
+                                <a href="{{ url('input-data/nilai-perilaku-positif') }}"
+                                    class="nav-link {{ Request::is('input-data/nilai-perilaku-positif') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Nilai Perilaku Positif
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('input-data/nilai-perilaku-negatif') }}" class="nav-link">Nilai
-                                    Perilaku Negatif
+                                <a href="{{ url('input-data/nilai-perilaku-negatif') }}"
+                                    class="nav-link {{ Request::is('input-data/nilai-perilaku-negatif') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Nilai Perilaku Negatif
                                 </a>
                             </li>
                         </ul>
@@ -155,13 +192,17 @@
                         <i class="fe fe-printer"></i>
                         Cetak Data
                     </a>
-                    <div class="collapse" id="sidebar-output-data">
+                    <div class="collapse {{ Request::is('output-data/*') ? 'show' : '' }}" id="sidebar-output-data">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ url('output-data/lihat-legger') }}" class="nav-link">Lihat Legger</a>
+                                <a href="{{ url('output-data/lihat-legger') }}"
+                                    class="nav-link {{ Request::is('output-data/lihat-legger') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Lihat Legger</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('output-data/cetak-laporan') }}" class="nav-link">Cetak Laporan</a>
+                                <a href="{{ url('output-data/cetak-laporan') }}"
+                                    class="nav-link {{ Request::is('output-data/cetak-laporan') ? 'rounded-3 border shadow-lg text-white bg-dark' : '' }}">
+                                    Cetak Laporan</a>
                             </li>
                         </ul>
                     </div>
