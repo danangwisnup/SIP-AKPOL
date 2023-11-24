@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AspkarPositifController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,7 @@ Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('dashboard');
     } else {
-        return redirect()->route('login.get');
+        return redirect()->route('login');
     }
 });
 
@@ -29,12 +31,18 @@ Route::get('/', function () {
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 
 // Login
-Route::get('login', [AuthController::class, 'index'])->middleware('guest')->name('login.get');
+Route::get('login', [AuthController::class, 'index'])->middleware('guest')->name('login');
 Route::post('login', [AuthController::class, 'authenticate'])->middleware('guest')->name('login.post');
 
 // Logout
 Route::get('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout.get');
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout.post');
+
+// semester
+Route::resource('konfigurasi/semester', SemesterController::class)->middleware('auth');
+
+// Aspek Karakter Positif
+Route::resource('aspek-karakter/positif', AspkarPositifController::class)->middleware('auth');
 
 // Mengarahkan ke halaman sebelumnya jika halaman tidak ditemukan
 Route::fallback(function () {
