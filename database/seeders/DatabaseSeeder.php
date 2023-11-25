@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SemesterSeeder::class,
             AspkarPositifSeeder::class,
+            AspkarNegatifSeeder::class,
         ]);
     }
 }
