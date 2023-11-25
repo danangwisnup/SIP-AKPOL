@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AspkarNegatifController;
 use App\Http\Controllers\AspkarPositifController;
 
 /*
@@ -43,6 +44,9 @@ Route::resource('konfigurasi/semester', SemesterController::class)->middleware('
 
 // Aspek Karakter Positif
 Route::resource('aspek-karakter/positif', AspkarPositifController::class)->middleware('auth');
+
+// Aspek Karakter Negatif
+Route::resource('aspek-karakter/negatif', AspkarNegatifController::class)->middleware('auth');
 
 // Mengarahkan ke halaman sebelumnya jika halaman tidak ditemukan
 Route::fallback(function () {
