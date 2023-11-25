@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('uuid')->unique();
             $table->string('tingkat');
             $table->string('bab');
-            $table->string('variabel');
-            $table->string('sub_bab');
-            $table->string('indikator');
+            $table->text('variabel');
+            $table->text('sub_bab');
+            $table->text('indikator');
             $table->string('no');
-            $table->string('keterangan');
-            $table->string('item');
+            $table->text('keterangan');
+            $table->text('item');
             $table->decimal('bobot', 8, 2);
             $table->timestamps();
         });

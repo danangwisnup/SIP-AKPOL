@@ -54,6 +54,7 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Variabel/Indikator</th>
+                                        <th scope="col">No</th>
                                         <th scope="col">Keterangan</th>
                                         <th scope="col">Item Yang Dinilai</th>
                                         <th scope="col">Bobot</th>
@@ -63,32 +64,51 @@
                                 <tbody>
                                     @foreach ($aspkarPositifs->groupBy(['bab', 'sub_bab', 'no']) as $bab => $babPositifs)
                                         <tr valign="top" class="font-bold table-active bg-gray-200">
-                                            <?php
-                                            /*colspan="{{ $aspkarPositifs->where('bab', $bab)->count()
-                                            +$aspkarPositifs->where('sub_bab', $aspkarPositifs->where('bab', $bab)->first()->sub_bab)->where('bab', $bab)->count() 
-                                            +1 }}"*/
-                                            ?>
                                             <td>{{ $bab }}</td>
                                             <td class="text-wrap">
                                                 {{ $aspkarPositifs->where('bab', $bab)->first()->variabel }}
                                             </td>
+                                            <td></td>
                                             <td>Taruna TK {{ $aspkarPositifs->where('bab', $bab)->first()->tingkat }}
                                             <td></td>
-                                            <td>{{ $aspkarPositifs->where('bab', $bab)->sum('bobot') }}</td>
+                                            <td>{{ round($aspkarPositifs->where('bab', $bab)->sum('bobot'), 1) }}</td>
                                             <td></td>
                                         </tr>
-                                        <tr valign="top" class="font-bold table-active bg-gray-200">
-                                            <td
-                                                rowspan="{{ $aspkarPositifs->where('bab', $bab)->count() +
-                                                    $aspkarPositifs->where('sub_bab', $aspkarPositifs->where('bab', $bab)->first()->sub_bab)->where('bab', $bab)->count() +
-                                                    1 }}">
-                                            </td>
-                                        </tr>
+                                        <?php
+                                        $jumlahItem = 0;
+                                        
+                                        foreach ($babPositifs as $sub_bab => $value) {
+                                            foreach ($value as $no => $innerValue) {
+                                                $jumlahItem += $aspkarPositifs
+                                                    ->where('no', $no)
+                                                    ->where('sub_bab', $sub_bab)
+                                                    ->where('bab', $bab)
+                                                    ->groupBy('no')
+                                                    ->count();
+                                            }
+                                        }
+                                        
+                                        $jumlahall =
+                                            $jumlahItem +
+                                            $aspkarPositifs
+                                                ->where('bab', $bab)
+                                                ->groupBy('sub_bab')
+                                                ->count() +
+                                            $aspkarPositifs->where('bab', $bab)->count() +
+                                            1;
+                                        ?>
                                         @foreach ($babPositifs as $sub_bab => $value)
                                             <tr valign="top">
-                                                <td rowspan="{{ $aspkarPositifs->where('sub_bab', $sub_bab)->where('bab', $bab)->count() +$aspkarPositifs->where('no',$aspkarPositifs->where('sub_bab', $sub_bab)->where('bab', $bab)->first()->no)->where('sub_bab', $sub_bab)->where('bab', $bab)->count() }}"
+                                                <td rowspan="{{ $aspkarPositifs->where('bab', $bab)->where('sub_bab', $sub_bab)->count() +
+                                                    $aspkarPositifs->where('bab', $bab)->where('sub_bab', $sub_bab)->groupBy('no')->count() +
+                                                    1 }}"
                                                     class="text-wrap">
-                                                    {{ $sub_bab }}.
+                                                    {{ $sub_bab }}
+                                                </td>
+                                                <td rowspan="{{ $aspkarPositifs->where('bab', $bab)->where('sub_bab', $sub_bab)->count() +
+                                                    $aspkarPositifs->where('bab', $bab)->where('sub_bab', $sub_bab)->groupBy('no')->count() +
+                                                    1 }}"
+                                                    class="text-wrap">
                                                     {{ $aspkarPositifs->where('sub_bab', $sub_bab)->where('bab', $bab)->first()->indikator }}
                                                 </td>
                                             </tr>
@@ -97,17 +117,20 @@
                                                     <td rowspan="{{ $aspkarPositifs->where('no', $no)->where('sub_bab', $sub_bab)->where('bab', $bab)->count() + 1 }}"
                                                         class="text-wrap">
                                                         {{ $no }}.
+                                                    </td>
+                                                    <td rowspan="{{ $aspkarPositifs->where('no', $no)->where('sub_bab', $sub_bab)->where('bab', $bab)->count() + 1 }}"
+                                                        class="text-wrap">
                                                         {{ $aspkarPositifs->where('no', $no)->where('sub_bab', $sub_bab)->where('bab', $bab)->first()->keterangan }}
                                                     </td>
                                                 </tr>
                                                 @foreach ($innerValue as $item)
                                                     <tr valign="top">
-                                                        <td>{{ $item['item'] }}</td>
-                                                        <td>{{ $item['bobot'] }}</td>
+                                                        <td class="text-wrap">{{ $item['item'] }}</td>
+                                                        <td class="text-wrap">{{ $item['bobot'] }}</td>
                                                         <td class="text-end">
                                                             <a href="#modalUpdate" data-bs-toggle="modal"
                                                                 id="btn_edit_karpositif"
-                                                                data-attr="{{ route('positif.edit', $item['id']) }}"
+                                                                data-attr="{{ route('positif.edit', $item['uuid']) }}"
                                                                 class="btn btn-sm btn-square btn-neutral">
                                                                 <i class="bi bi-pencil"></i>
                                                             </a>
