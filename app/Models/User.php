@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -14,6 +14,32 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    public static function uuid()
+    {
+        $type = 'USR';
+        $uuid = Str::uuid()->toString();
+        $uuid_second = substr($uuid, 9, 4);
+        $uuid_third = substr($uuid, 14, 4);
+        $uuid_fourth = substr($uuid, 19, 4);
+        $uuid_fifth = substr($uuid, 24, 12);
+        $no = str_pad(User::whereDate('created_at', date('Y-m-d'))->count() + 1, 7, '0', STR_PAD_LEFT);
+        $uid = $type . '.' . $uuid_fifth . $uuid_second . $uuid_third . $uuid_fourth . '.' . $no;
+
+        return $uid;
+    }
+
+    /**
      * The "booting" function of model
      *
      * @return void
@@ -22,17 +48,7 @@ class User extends Authenticatable
     {
         parent::boot();
         static::creating(function ($model) {
-            if (empty($model->{$model->getKeyName()})) {
-                $type = 'USR';
-                $uuid = Str::uuid()->toString();
-                $uuid_second = substr($uuid, 9, 4);
-                $uuid_third = substr($uuid, 14, 4);
-                $uuid_fourth = substr($uuid, 19, 4);
-                $uuid_fifth = substr($uuid, 24, 12);
-                $no = str_pad(User::whereDate('created_at', date('Y-m-d'))->count() + 1, 7, '0', STR_PAD_LEFT);
-                $uid = $type . '.' . $uuid_fifth . $uuid_second . $uuid_third . $uuid_fourth . '.' . $no;
-                $model->{$model->getKeyName()} = $uid;
-            }
+            $model->uuid = User::uuid();
         });
     }
 
